@@ -1,160 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on My reflections</title><link>https://av1nash.github.io/posts/</link><description>Recent content in Posts on My reflections</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Mar 2019 00:00:01 -0500</lastBuildDate><atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Find and remove hidden characters in MS SQL Server</title><link>https://av1nash.github.io/posts/mssql-find-and-remove-hidden-chars/</link><pubDate>Tue, 26 Mar 2019 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-find-and-remove-hidden-chars/</guid><description>When working with large text fields (usually they come from fields which allow users to enter free text in front end or email body etc.) it is possible to encounter data which has invisible characters. These characters could be invisible to your eyes in management studio while querying or to certain functions like - LTRIM, RTRIM or in a predicate condition like -
-WHERE([ColumnName]) &amp;lt;&amp;gt; &amp;#39;&amp;#39; You can try a brute force method to resolve this by replacing commonly occuring invisible characters like -</description><content type="html"><![CDATA[<p>When working with large text fields (usually they come from fields which allow users to enter free text in front end or email body etc.) it is possible to encounter data which has invisible characters. <br>
-These characters could be invisible to your eyes in management studio while querying or to certain functions like - LTRIM, RTRIM or in a predicate condition like -</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#fff;font-weight:bold">WHERE</span>([ColumnName]) &lt;&gt; <span style="color:#0ff;font-weight:bold">&#39;&#39;</span></code></pre></div>
-<p>You can try a brute force method to resolve this by replacing commonly occuring invisible characters like -</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Character</th>
-<th align="left">ASCII Value</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Line Feed</td>
-<td align="left">10</td>
-</tr>
-
-<tr>
-<td align="left">Carriage Return</td>
-<td align="left">13</td>
-</tr>
-
-<tr>
-<td align="left">Horizontal Tab</td>
-<td align="left">9</td>
-</tr>
-
-<tr>
-<td align="left">Non-breaking space</td>
-<td align="left">160</td>
-</tr>
-</tbody>
-</table>
-
-<p>You can read more about it here: <a href="https://en.wikipedia.org/wiki/ASCII">ASCII character list</a></p>
-
-<p>To replace you use this pattern:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#fff;font-weight:bold">REPLACE</span>(<span style="color:#fff;font-weight:bold">CAST</span>([columnname] <span style="color:#fff;font-weight:bold">AS</span> <span style="color:#fff;font-weight:bold">VARCHAR</span>(<span style="color:#fff;font-weight:bold">max</span>)),<span style="color:#fff;font-weight:bold">CHAR</span>(<span style="color:#ff0;font-weight:bold">10</span>),<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>)</code></pre></div>
-<p>You can keep on adding more Replace statements as required in your case.</p>
-
-<p><i class="fa fa-exclamation-triangle" style="color:#FF0000;"></i> Please be aware that if this [columnname] is large in size, your query performance will degrade.</p>
-]]></content></item><item><title>Counting number of rows in MS SQL</title><link>https://av1nash.github.io/posts/mssql-counting-rows/</link><pubDate>Fri, 29 Dec 2017 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-counting-rows/</guid><description>One can count number of rows in a table in many ways and depending upon the chosen option results may or may not be same.
-Reason being the way SQL handles NULL while counting. Following are three different ways to COUNT number of rows in a table:
-Query Results SELECT COUNT(*) returns total row count SELECT COUNT(1) returns total row count SELECT COUNT() returns row count where IS NOT NULL</description><content type="html"><![CDATA[<p>One can count number of rows in a table in many ways and depending upon the chosen option results may or may not be same.</p>
-
-<p>Reason being the way SQL handles NULL while counting. Following are three different ways to COUNT number of rows in a table:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Query</th>
-<th align="left">Results</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">SELECT COUNT(*)</td>
-<td align="left">returns total row count</td>
-</tr>
-
-<tr>
-<td align="left">SELECT COUNT(1)</td>
-<td align="left">returns total row count</td>
-</tr>
-
-<tr>
-<td align="left">SELECT COUNT(<Col Name>)</td>
-<td align="left">returns row count where <Col Name> IS NOT NULL</td>
-</tr>
-</tbody>
-</table>
-]]></content></item><item><title>Print pime numbers in MS SQL</title><link>https://av1nash.github.io/posts/mssql-finding-primenumbers/</link><pubDate>Sun, 26 Feb 2017 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-finding-primenumbers/</guid><description>This is a problem I found in Hacker Rank. I did not had a clue how I can solve it in MS SQL, I mean I know what the logic of finding a prime number is but how do I apply that to MS SQL.
-Then I came across this solution from a user rodbourn and this is an absolutely amazing SQL query, every line is a concept in itself and I thought I will dissect it to understand it and maybe help someone else in the process.</description><content type="html"><![CDATA[<p>This is a problem I found in <a href="https://www.hackerrank.com/challenges/print-prime-numbers">Hacker Rank</a>. I did not had a clue how I can solve it in MS SQL, I mean I know what the logic of finding a prime number is but how do I apply that to MS SQL.</p>
-
-<p>Then I came across this solution from a user <strong>rodbourn</strong> and this is an absolutely amazing SQL query, every line is a concept in itself and I thought I will dissect it to understand it and maybe help someone else in the process.</p>
-
-<p>For those who are experienced and do not want to read the conceptual breakdown of the query, here is the entire query:</p>
-
-<p>{% highlight sql %}</p>
-
-<p>DECLARE @Primes VARCHAR(MAX);</p>
-
-<p>WITH vals as (
-SELECT ones.n + 10*tens.n + 100*hund.n value
-FROM (VALUES(0),(1),(2),(3),(4),(5),(6),(7),(8),(9)) ones(n),
-     (VALUES(0),(1),(2),(3),(4),(5),(6),(7),(8),(9)) tens(n),
-     (VALUES(0),(1),(2),(3),(4),(5),(6),(7),(8),(9)) hund(n)
-WHERE ones.n + 10*tens.n + 100*hund.n BETWEEN 2 AND 1000
-),
-primes as (
-    SELECT TOP 1000 value
-    FROM vals valPar
-    WHERE NOT EXISTS (
-        SELECT 1 FROM vals valSub
-        WHERE valSub.value != valPar.value AND valSub.value != 1
-            AND (valPar.value +0.0) / valSub.value = (valPar.value / valSub.value)
-    )
-    ORDER BY value
-)
-SELECT @Primes = COALESCE(@Primes +&rsquo;&amp;&lsquo;, &ldquo;) + CAST(value as varchar(50))
-FROM primes;</p>
-
-<p>PRINT @Primes
-{% endhighlight %}</p>
-
-<p>Now let dissect this query concept-wise.
-1. <a href="https://msdn.microsoft.com/en-us/library/ms175972.aspx">Common Table Expression</a> - We know what CTEs are, what is interesting to note here is that you can define multiple CTE in a single query separated by a comma. CTE names defined here are - <em>vals and primes</em>
-2. <a href="https://msdn.microsoft.com/en-us/library/dd776382.aspx">Table value constructor</a> - Although this feature is available since MS SQL Server 2008, most of us barely know that it exists (atleast I did not). It is a way to specify a set of row values expresssions into a table.</p>
-]]></content></item><item><title>Setting up Visual Studio tools for R</title><link>https://av1nash.github.io/posts/setting-up-vstools-for-rservices/</link><pubDate>Sun, 12 Feb 2017 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/setting-up-vstools-for-rservices/</guid><description>I am trying to follow this course Introduction to Microsoft R Server but with the exception that I wanted to run the R script on my SQL Server R Services (in database) rather than Microsoft R Client. This required making following changes:
-Specifying path of R Engine in VS RTool.
-Open RTools Options and specify the path to your Rserver folder (default in case of SQL Server 2016 is C:\Program Files\Microsoft SQL Server\130\R_SERVER) 2.</description><content type="html"><![CDATA[<p>I am trying to follow this course <a href="https://smott.gitbooks.io/introduction-to-microsoft-r-server/content/">Introduction to Microsoft R Server</a> but with the exception that I wanted to run the R script on my SQL Server R Services (in database) rather than Microsoft R Client.
-This required making following changes:</p>
-
-<ol>
-<li><p>Specifying path of R Engine in VS RTool.</p>
-
-<ul>
-<li>Open RTools Options and specify the path to your Rserver folder (default in case of SQL Server 2016 is <code>C:\Program Files\Microsoft SQL Server\130\R_SERVER</code>)</li>
-</ul></li>
-</ol>
-
-<p><img src="http://av1nash.github.io/blogs/images/VS-RTool-Options.png" alt="VSRtool options" />
-2. Installing R packages in the library folder of R Server.</p>
-
-<ul>
-<li>You can no longer install package from Visual Studio R Tool itself, you will have to open a command prompt <strong>as an administrator</strong>. Go to the directory where your R.exe file is kept (default path is <code>C:\Program Files\Microsoft SQL Server\130\R_SERVER\bin\x64</code>)</li>
-<li>Set the library to SQL Server library location and install the relevant package</li>
-</ul>
-
-<p>{% highlight R %}</p>
-
-<p>lib.SQL &lt;-&ldquo;C:/Program Files/Microsoft SQL Server/130/R_SERVER/library&rdquo;
- install.packages(&ldquo;dplyr&rdquo;, lib = lib.SQL)
-{% endhighlight %}</p>
-]]></content></item><item><title>Set up SQL Server R Services (In-Database)</title><link>https://av1nash.github.io/posts/setup-sqlserver-rservices/</link><pubDate>Sat, 11 Feb 2017 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/setup-sqlserver-rservices/</guid><description>MSDN Article here explains in detail the steps required to set up SQL Server R Services (In-Database). For those who have already installed R Services as part of their SQL Server 2016 installation (like me) and looking for enabling the R services, you can open SQL Server management studio and run following command:
-Exec sp_configure &amp;#39;external scripts enabled&amp;#39;, 1 Reconfigure with override Open services.msc and restart SQL Server services. Now you can run a test script to ensure that the changes are in effect.</description><content type="html"><![CDATA[<p><a href="https://msdn.microsoft.com/en-us/library/mt696069.aspx">MSDN Article</a> here explains in detail the steps required to set up SQL Server R Services (In-Database).
-For those who have already installed R Services as part of their SQL Server 2016 installation (like me) and looking for enabling the R services, you can open SQL Server management studio and run following command:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#fff;font-weight:bold">Exec</span> sp_configure  <span style="color:#0ff;font-weight:bold">&#39;external scripts enabled&#39;</span>, <span style="color:#ff0;font-weight:bold">1</span>  
-Reconfigure  <span style="color:#fff;font-weight:bold">with</span> override   </code></pre></div>
-<p>Open services.msc and restart SQL Server services.
-Now you can run a test script to ensure that the changes are in effect.</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#fff;font-weight:bold">exec</span> sp_execute_external_script  @<span style="color:#fff;font-weight:bold">language</span> =N<span style="color:#0ff;font-weight:bold">&#39;R&#39;</span>,  
-@script=N<span style="color:#0ff;font-weight:bold">&#39;OutputDataSet&lt;-InputDataSet&#39;</span>,    
-@input_data_1 =N<span style="color:#0ff;font-weight:bold">&#39;select 1 as hello&#39;</span>  
-<span style="color:#fff;font-weight:bold">with</span> <span style="color:#fff;font-weight:bold">result</span> <span style="color:#fff;font-weight:bold">sets</span> (([hello] <span style="color:#fff;font-weight:bold">int</span> <span style="color:#fff;font-weight:bold">not</span> <span style="color:#fff;font-weight:bold">null</span>));  
-<span style="color:#fff;font-weight:bold">go</span>  </code></pre></div>
-<ol>
-<li>The @language parameter defines the language extension to call, in this case, R.</li>
-<li>In the @script parameter, you define the commands to pass to the R runtime. Your entire R script must be enclosed in this argument, as Unicode text. You could also add the text to a <code>variable of type nvarchar and then call the variable</code>.</li>
-<li>The data returned by the query is passed to the R runtime, which returns the data to SQL Server as a data frame.</li>
-<li>The WITH RESULT SETS clause defines the <ins>schema</ins> of the returned data table for SQL Server.</li>
-</ol>
-
-<p><strong>Output</strong>
-<img src="http://av1nash.github.io/blogs/images/Test-R-Script-output.PNG" alt="R Script Output" /></p>
-]]></content></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on My reflections</title>
+        <link>https://av1nash.github.io/posts/</link>
+        <description>Recent content in Posts on My reflections</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 29 Nov 2019 15:46:36 -0500</lastBuildDate>
+        <atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>My Test Post 1</title>
+            <link>https://av1nash.github.io/posts/my-test-post/</link>
+            <pubDate>Fri, 29 Nov 2019 15:46:36 -0500</pubDate>
+            
+            <guid>https://av1nash.github.io/posts/my-test-post/</guid>
+            <description></description>
+            <content type="html"><![CDATA[]]></content>
+        </item>
+        
+    </channel>
+</rss>
