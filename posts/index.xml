@@ -1,7 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on My reflections</title><link>https://av1nash.github.io/posts/</link><description>Recent content in Posts on My reflections</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 Dec 2019 11:56:00 -0500</lastBuildDate><atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Summing a Geometric Series</title><link>https://av1nash.github.io/posts/summing-a-geometric-series/</link><pubDate>Mon, 02 Dec 2019 11:56:00 -0500</pubDate><guid>https://av1nash.github.io/posts/summing-a-geometric-series/</guid><description>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page Mailchimp - Summing Geometric Series. Its been a while since I read some maths so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</description><content type="html"><![CDATA[<p>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page <a href="http://www.moneychimp.com/articles/finworks/fmgeom.htm#formula">Mailchimp - Summing Geometric Series</a>. Its been a while since I read some maths so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on My reflections</title><link>https://av1nash.github.io/posts/</link><description>Recent content in Posts on My reflections</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 Dec 2019 11:56:00 -0500</lastBuildDate><atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Summing a Geometric Series</title><link>https://av1nash.github.io/posts/summing-a-geometric-series/</link><pubDate>Mon, 02 Dec 2019 11:56:00 -0500</pubDate><guid>https://av1nash.github.io/posts/summing-a-geometric-series/</guid><description>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page Mailchimp - Summing Geometric Series. Its been a while since I read something in Mathematics domain, so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</description><content type="html"><![CDATA[<p>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page <a href="http://www.moneychimp.com/articles/finworks/fmgeom.htm#formula">Mailchimp - Summing Geometric Series</a>. Its been a while since I read something in Mathematics domain, so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</p>
 
-<p>If Z is a number and you are tasked with finding the sum of all the powers of Z up to 30th power:
-1 + z + z^2 + z^3 + &hellip;.+ z^30</p>
+<p>From <a href="https://en.wikipedia.org/wiki/Geometric_series">Wikipedia</a>
+&gt;In mathematics, a geometric series is a series with a constant ratio between successive terms</p>
+
+<p>For example: a series of the form: 1 + 2 + 2^2 + 2^3 &hellip; has a constant ratio of 2 between successive terms.</p>
+
+<p>So if someone asks you to calculate this: 1 + 2 + 2^2 + 2^3 + &hellip;.+ 2^50, you can use the formula to evaluate a Geometric series, following is a method to come up with that formula:</p>
+
+<p>In a more generic form such a series can be represented as:
+f(n) = 1 + z + z^2 + &hellip;. + z^n</p>
+
+<p>If I know the formula for f(n), how can I use that to find f(n+1) ?
+This is same as saying, if I know:</p>
+
+<p>f(2) = 1+ z + z^2</p>
+
+<p>&amp;</p>
+
+<p>f(3) = 1 + z + z^2 + z^3</p>
+
+<p>then how can i represent f(3) in terms of f(2) and the answer will be:</p>
+
+<p>f(3) or f(2+1) = f(2) + z^(2+1)</p>
+
+<p>In more general terms:</p>
+
+<p><strong>f(n+1) = f(n) + z^(n+1)</strong></p>
+
+<p>There is one more way to get f(n+1), lets start with our original function:</p>
+
+<p>f(n) = 1 + z + z^2 + &hellip;. + z^n</p>
+
+<p>Lets multiply z on both sides of this equation:</p>
+
+<p>z.f(n) = z + z^2 + &hellip;. + z^n + z^(n+1)</p>
+
+<p>Lets add 1 on both sides of this equation:</p>
+
+<p>z.f(n) + 1 = 1 + z + z^2 + &hellip;. + z^n + z^(n+1)</p>
+
+<p><strong>z.f(n) + 1 = f(n+1)</strong></p>
+
+<p>If we equate the two formulas that we have worked out for f(n+1):</p>
+
+<p>z.f(n) + 1 = f(n) + z^(n+1)</p>
+
+<p>Solving for f(n), we get:</p>
+
+<p><strong>f(n) = z^(n+1) - 1 / z - 1</strong></p>
 ]]></content></item><item><title>Setting Up Hugo</title><link>https://av1nash.github.io/posts/setting-up-hugo/</link><pubDate>Fri, 29 Nov 2019 23:35:30 -0500</pubDate><guid>https://av1nash.github.io/posts/setting-up-hugo/</guid><description> Overview Prerequisites</description><content type="html">
 &lt;h1 id="overview">Overview&lt;/h1>
 &lt;h1 id="prerequisites">Prerequisites&lt;/h1></content></item><item><title>Mssql Find and Remove Hidden Chars</title><link>https://av1nash.github.io/posts/mssql-find-and-remove-hidden-chars/</link><pubDate>Tue, 26 Mar 2019 00:00:01 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-find-and-remove-hidden-chars/</guid><description>When working with large text fields (usually they come from fields which allow users to enter free text in front end or email body etc.) it is possible to encounter data which has invisible characters. These characters could be invisible to your eyes in management studio while querying or to certain functions like - LTRIM, RTRIM or in a predicate condition like -
