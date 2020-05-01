@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on My reflections</title><link>https://av1nash.github.io/posts/</link><description>Recent content in Posts on My reflections</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 19 Feb 2020 16:09:00 -0500</lastBuildDate><atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Overview of Back Up &amp; Restore of MS Sql Server Databases</title><link>https://av1nash.github.io/posts/mssql-backuprestore-overview/</link><pubDate>Wed, 19 Feb 2020 16:09:00 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-backuprestore-overview/</guid><description>Managed services on Azure like Azure SQL Database, Azure Synapse (Azure SQL Datawarehouse) &amp;amp; SQL Managed Instances makes it very easy to create a backup &amp;amp; restore strategies. In scenarios where you are spinning up a SQL instance on an Azure VM or a local environment, it will be upto you to do some configurations so that you have a backup and restore strategy available to support your business requirement.</description><content type="html"><![CDATA[<p>Managed services on Azure like Azure SQL Database, Azure Synapse (Azure SQL Datawarehouse) &amp; SQL Managed Instances makes it very easy to create a backup &amp; restore strategies. In scenarios where you are spinning up a SQL instance on an Azure VM or a local environment, it will be upto you to do some configurations so that you have a backup and restore strategy available to support your business requirement.</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on My reflections</title><link>https://av1nash.github.io/posts/</link><description>Recent content in Posts on My reflections</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 Mar 2020 12:20:00 -0500</lastBuildDate><atom:link href="https://av1nash.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Very simple Git workflow</title><link>https://av1nash.github.io/posts/simple-git-workflow/</link><pubDate>Wed, 25 Mar 2020 12:20:00 -0500</pubDate><guid>https://av1nash.github.io/posts/simple-git-workflow/</guid><description>Simple git workflow
+Open command prompt and go to your local copy of your repository. dos cd C:\Workplace\DevOps\reponame\ Create new branch. dos git checkout -b user/avinash-addNewPackage Make your changes to the local copy of repository. Stage your changes dos git add * Commit your changes. dos git commit -m &amp;quot;Adding new package&amp;quot; Push your changes to remote branch. dos git push origin user/avinash-addNewPackage Go to Azure DevOps and create a pull request to merge your work with master branch.</description><content type="html"><![CDATA[<p><strong>Simple git workflow</strong></p>
+
+<ol>
+<li>Open command prompt and go to your local copy of your repository.
+<code>dos
+cd C:\Workplace\DevOps\reponame\
+</code></li>
+<li>Create new branch.
+<code>dos
+git checkout -b user/avinash-addNewPackage
+</code></li>
+<li>Make your changes to the local copy of repository.</li>
+<li>Stage your changes
+<code>dos
+git add *
+</code></li>
+<li>Commit your changes.
+<code>dos
+git commit -m &quot;Adding new package&quot;
+</code></li>
+<li>Push your changes to remote branch.
+<code>dos
+git push origin user/avinash-addNewPackage
+</code></li>
+<li>Go to Azure DevOps and create a pull request to merge your work with master branch.</li>
+</ol>
+]]></content></item><item><title>Running MS SQL on Linux in AKS</title><link>https://av1nash.github.io/posts/mssql-on-linux-aks/</link><pubDate>Thu, 05 Mar 2020 14:53:00 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-on-linux-aks/</guid><description>Creating a kubernetes cluster
+Login to you azure account console az login Create resources
+#Create a resource group az group create --name rgACR --location eastus #Create an Azure container registry instance az acr create --resource-group rgACR --name dockerSQL2019 --sku Basic #Log in to the container registry az acr login --name dockerSQL2019 #Create an AKS cluster az aks create --resource-group rgACR --name sqlAKSCluster --node-count 2 --generate-ssh-keys --attach-acr dockersql2019 #To configure kubectl to connect to your Kubernetes cluster az aks get-credentials --resource-group rgACR --name sqlAKSCluster #To verify the connection to your cluster kubectl get nodes #Create an SA password in the Kubernetes cluster kubectl create secret generic mssql --from-literal=SA_PASSWORD=&amp;#34;ComplexPassword&amp;#34;</description><content type="html"><![CDATA[<p><strong>Creating a kubernetes cluster</strong></p>
+
+<ol>
+<li>Login to you azure account
+<code>console
+az login
+</code></li>
+
+<li><p>Create resources</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    #Create a resource group
+    az group create --name rgACR --location eastus
+
+    #Create an Azure container registry instance
+    az acr create --resource-group rgACR --name dockerSQL2019 --sku Basic
+
+    #Log in to the container registry
+    az acr login --name dockerSQL2019
+
+    #Create an AKS cluster
+    az aks create --resource-group rgACR --name sqlAKSCluster --node-count 2 --generate-ssh-keys --attach-acr dockersql2019
+
+    #To configure kubectl to connect to your Kubernetes cluster
+    az aks get-credentials --resource-group rgACR --name sqlAKSCluster
+
+    #To verify the connection to your cluster
+    kubectl get nodes
+
+    #Create an SA password in the Kubernetes cluster
+    kubectl create secret generic mssql --from-literal=SA_PASSWORD=&#34;ComplexPassword&#34;</code></pre></div></li>
+
+<li></li>
+</ol>
+]]></content></item><item><title>Databricks Cheatsheet</title><link>https://av1nash.github.io/posts/databricks-shortcut/</link><pubDate>Mon, 02 Mar 2020 12:18:00 -0500</pubDate><guid>https://av1nash.github.io/posts/databricks-shortcut/</guid><description>General
+Shortcut Description Ctrl + / Multiline comment Spark Dataframe
+Shortcut Description df.head() returns first few rows of a dataframe df.count() returns count of non null values of all columns in a dataframe</description><content type="html"><![CDATA[<p><strong>General</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ctrl + /</td>
+<td>Multiline comment</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Spark Dataframe</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>df.head()</td>
+<td>returns first few rows of a dataframe</td>
+</tr>
+
+<tr>
+<td>df.count()</td>
+<td>returns count of non null values of all columns in a dataframe</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content></item><item><title>Understanding payments processing stack</title><link>https://av1nash.github.io/posts/understanding-payments-layercake/</link><pubDate>Mon, 02 Mar 2020 12:18:00 -0500</pubDate><guid>https://av1nash.github.io/posts/understanding-payments-layercake/</guid><description>[text1] [text2] [text3]</description><content type="html"><![CDATA[<p>[<a href="https://www.finixpayments.com/blog/understanding-the-payments-stack/">text1</a>]
+[<a href="https://fin.plaid.com/articles/major-players-in-payment-processing/">text2</a>]
+[<a href="https://www.cbinsights.com/research/report/stripe-teardown/">text3</a>]</p>
+]]></content></item><item><title>Overview of Back Up &amp; Restore of MS Sql Server Databases</title><link>https://av1nash.github.io/posts/mssql-backuprestore-overview/</link><pubDate>Wed, 19 Feb 2020 16:09:00 -0500</pubDate><guid>https://av1nash.github.io/posts/mssql-backuprestore-overview/</guid><description>Managed services on Azure like Azure SQL Database, Azure Synapse (Azure SQL Datawarehouse) &amp;amp; SQL Managed Instances makes it very easy to create a backup &amp;amp; restore strategies. In scenarios where you are spinning up a SQL instance on an Azure VM or a local environment, it will be upto you to do some configurations so that you have a backup and restore strategy available to support your business requirement.</description><content type="html"><![CDATA[<p>Managed services on Azure like Azure SQL Database, Azure Synapse (Azure SQL Datawarehouse) &amp; SQL Managed Instances makes it very easy to create a backup &amp; restore strategies. In scenarios where you are spinning up a SQL instance on an Azure VM or a local environment, it will be upto you to do some configurations so that you have a backup and restore strategy available to support your business requirement.</p>
 ]]></content></item><item><title>Summing a Geometric Series</title><link>https://av1nash.github.io/posts/summing-a-geometric-series/</link><pubDate>Mon, 02 Dec 2019 11:56:00 -0500</pubDate><guid>https://av1nash.github.io/posts/summing-a-geometric-series/</guid><description>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page Mailchimp - Summing Geometric Series. Its been a while since I read something in Mathematics domain, so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</description><content type="html"><![CDATA[<p>As is the nature of internet, I was reading something and one thing lead to another. When my conscious mind took over, I was staring at a page talking about Geometric Series, to be precise this page <a href="http://www.moneychimp.com/articles/finworks/fmgeom.htm#formula">Mailchimp - Summing Geometric Series</a>. Its been a while since I read something in Mathematics domain, so to exercise my brain, I thought of reading and following along with the explanation. Since I am making a conscious effort to record things more diligently, this is my attempt to understand the text.</p>
 
 <p>From <a href="https://en.wikipedia.org/wiki/Geometric_series">Wikipedia</a>
