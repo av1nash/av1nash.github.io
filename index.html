@@ -1,22 +1,596 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>My Reflections</title><meta name=renderer content=webkit><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=theme-color content=#f8f5ec><meta name=msapplication-navbutton-color content=#f8f5ec><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=#f8f5ec><meta name=author content=Avinash><meta name=google-site-verification content=AcBupMFJV_76Y_5rqzb51UnGTfzb-ONyIAGju9ECtDI><meta name=description content="Avinash's personal blog."><meta name=keywords content=blog,data,azure,thoughts><meta name=generator content="Hugo 0.58.3 with theme even"><link rel=canonical href=https://av1nash.github.io/><link href=https://av1nash.github.io/index.xml rel=alternate type=application/rss+xml title="My Reflections"><link href=https://av1nash.github.io/index.xml rel=feed type=application/rss+xml title="My Reflections"><link rel=apple-touch-icon sizes=180x180 href=https://av1nash.github.io/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://av1nash.github.io/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://av1nash.github.io/favicon-16x16.png><link rel=manifest href=https://av1nash.github.io/manifest.json><link rel=mask-icon href=https://av1nash.github.io/safari-pinned-tab.svg color=#5bbad5><link href=https://av1nash.github.io/sass/main.min.6eb09ed45a88bd339269c14515d2a11f2e0afdadbdd763d83f9b5c797166b081.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property=og:title content="My Reflections"><meta property=og:description content="Avinash's personal blog."><meta property=og:type content=website><meta property=og:url content=https://av1nash.github.io/><meta property=og:updated_time content=2021-07-20T18:42:19+00:00><meta itemprop=name content="My Reflections"><meta itemprop=description content="Avinash's personal blog."><meta name=twitter:card content=summary><meta name=twitter:title content="My Reflections"><meta name=twitter:description content="Avinash's personal blog."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://av1nash.github.io/ class=logo>Avinash&#39;s Blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=https://av1nash.github.io/><li class=mobile-menu-item>Home</li></a><a href=https://av1nash.github.io/post/><li class=mobile-menu-item>Archives</li></a><a href=https://av1nash.github.io/tags/><li class=mobile-menu-item>Tags</li></a><a href=https://av1nash.github.io/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://av1nash.github.io/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=https://av1nash.github.io/ class=logo><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/av1nash.github.io\/"},"articleSection":"","name":"My Reflections","headline":"My Reflections","description":"","inLanguage":"en-US","author":"Avinash","creator":"Avinash","publisher":"Avinash","accountablePerson":"Avinash","copyrightHolder":"Avinash","copyrightYear":"2021","datePublished":"2021-07-20 18:42:19 \x2b0000 UTC","dateModified":"2021-07-20 18:42:19 \x2b0000 UTC","url":"https:\/\/av1nash.github.io\/","wordCount":"0","keywords":["Blog"]}</script>Avinash&#39;s Blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://av1nash.github.io/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://av1nash.github.io/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://av1nash.github.io/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=https://av1nash.github.io/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://av1nash.github.io/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=https://av1nash.github.io/post/partition-splitting/>Azure Synapse - Split Partition</a></h1><div class=post-meta><span class=post-time>2021-07-20</span><div class=post-category><a href=https://av1nash.github.io/categories/how-to/>how-to</a></div><span class=more-meta>483 words</span>
-<span class=more-meta>3 mins read</span></div></header><div class=post-content><div class=post-summary>The setup Elaborating on official documentation from Microsoft.
-Let&rsquo;s start with a partitioned table - src_tbl
-1 2 3 4 5 6 7 8 9 10 CREATE TABLE src_tbl ( order_id INT, order_date DATE, order_qty INT ) WITH (CLUSTERED COLUMNSTORE INDEX, DISTRIBUTION = HASH(order_id) ,PARTITION (order_date RANGE RIGHT FOR VALUES(&#39;2006-01-01&#39;,&#39;2007-01-01&#39;)) ) Now lets assume that we have new rows coming into our table and we want to split the partition to accomodate them for better performance.</div><div class=read-more><a href=https://av1nash.github.io/post/partition-splitting/ class=read-more-link>Read more...</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=https://av1nash.github.io/post/sql-table-partitions/>Partitioning table in Azure Synapse</a></h1><div class=post-meta><span class=post-time>2021-07-16</span><div class=post-category><a href=https://av1nash.github.io/categories/how-to/>how-to</a></div><span class=more-meta>527 words</span>
-<span class=more-meta>3 mins read</span></div></header><div class=post-content><div class=post-summary>Mostly sourced from this article
-Table Partition Enables you to divide data into smaller groups of data. Mostly created on a date column. Supported on all table types: clustered columnstore clustered index heap Supported on all distribution types: hash round robin Can be done on one column only. Benefits Load operations When leveraging partitions to load data into a table, you can avoid use of transaction logs, significantly improving performance.</div><div class=read-more><a href=https://av1nash.github.io/post/sql-table-partitions/ class=read-more-link>Read more...</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=https://av1nash.github.io/post/readfroms3/>Copy data from Amazon S3 bucket using Azure Data Factory</a></h1><div class=post-meta><span class=post-time>2020-12-01</span><div class=post-category><a href=https://av1nash.github.io/categories/tutorial/>tutorial</a></div><span class=more-meta>242 words</span>
-<span class=more-meta>2 mins read</span></div></header><div class=post-content><div class=post-summary>Objective: Copy a file from AWS S3 bucket using Azure Data Factory
-I tried to follow the official Microsoft documentation, but kept getting this error message when creating Source dataset:
-Failed to load
-The file operation is failed. A webException with status TrustFailure was thrown. The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel. The remote certificate is invalid according to the validation procedure.</div><div class=read-more><a href=https://av1nash.github.io/post/readfroms3/ class=read-more-link>Read more...</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=https://av1nash.github.io/post/income-inequalities/>Income Inequalities</a></h1><div class=post-meta><span class=post-time>2020-10-23</span><div class=post-category><a href=https://av1nash.github.io/categories/explanation/>explanation</a></div><span class=more-meta>90 words</span>
-<span class=more-meta>1 min read</span></div></header><div class=post-content><div class=post-summary>Over the last few years, LinkedIn has transformed into an interesting product. In its heyday I viewed it as a medium to connect with colleagues and search for jobs.
-But now it&rsquo;s a full-blown social media platform for professionals and influencers (love this term). Love it, hate it but sometimes you come across great articles like the one I read today.
-It&rsquo;s written by David Ellis and here is a link to the article.</div><div class=read-more><a href=https://av1nash.github.io/post/income-inequalities/ class=read-more-link>Read more...</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=https://av1nash.github.io/post/on-saving-time/>Seneca, On saving time</a></h1><div class=post-meta><span class=post-time>2020-10-11</span><div class=post-category><a href=https://av1nash.github.io/categories/reference/>reference</a></div><span class=more-meta>112 words</span>
-<span class=more-meta>1 min read</span></div></header><div class=post-content><div class=post-summary>While browsing random wikipedia articles, I came across an interesting piece of work called &ldquo;Moral Letters to Lucilius by Seneca&rdquo; 🔗
-This form of writing is called Epistles and is defined as
-a poem or other literary work in the form of a letter or series of letters
-Written by the Roman philosopher Seneca to Lucilius who was apparently a friend.
-There are total 124 such letters and I just read and made some notes on the first one - On saving time.</div><div class=read-more><a href=https://av1nash.github.io/post/on-saving-time/ class=read-more-link>Read more...</a></div></div></article></section><nav class=pagination><a class=next href=https://av1nash.github.io/page/2/><span class=next-text>Next</span>
-<i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:your@email.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/av1n45h/ class="iconfont icon-twitter" title=twitter></a><a href=https://www.linkedin.com/in/tripathiavinash/ class="iconfont icon-linkedin" title=linkedin></a><a href=https://github.com/av1nash/ class="iconfont icon-github" title=github></a><a href=https://av1nash.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=copyright-year>&copy;
-2017 -
-2021
-<span class=heart><i class="iconfont icon-heart"></i></span><span class=author>Avinash</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=https://av1nash.github.io/js/main.cddea96674a99fd8cea50d36fb19d9c91f497feea4af5ce4596afd2dbaab9202.js></script><script type=text/javascript>window.MathJax={showProcessingMessages:false,messageStyle:'none'};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-73286242-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>avi</title>
+<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+
+  <meta name="author" content="Avinash Tripathi">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="avi">
+<meta property="og:title" content="avi">
+<meta property="og:url" content="/">
+
+
+  <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/">
+
+
+
+  <link rel="next" href="/page2/">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="avi Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--home">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          avi
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="/">
+        <img src="/assets/images/bio-photo.jpg" alt="Avinash Tripathi" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/" itemprop="url">Avinash Tripathi</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Data &amp; Analytics Engineering</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title"></h1>
+    
+    
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="https://github.com">Post: Link
+</a> <a href="/blog/post-link/" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This theme supports link posts, made famous by John Gruber. To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/post-quote/" rel="permalink">Post: Quote
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Only one thing is impossible for God: To find any sense in any copyright law on the planet.
+
+
+
+  Mark Twain
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/post-notice/" rel="permalink">Post: Notice
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A notice displays information that explains nearby content. Often used to call attention to a particular detail.
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/post-chat/" rel="permalink">Post: Chat
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Abbott: Strange as it may seem, they give ball players nowadays very peculiar names.
+
+</p>
+  </article>
+</div>
+
+  
+</div>
+
+
+<nav class="pagination">
+  
+  <ul>
+    
+    
+    <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
+    
+
+    
+    
+      <li><a href="#" class="disabled current">1</a></li>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+
+    
+      <li><a href="/page2/">2</a></li>
+    
+
+    
+    
+      <li><a href="/page2/">Next</a></li>
+    
+  </ul>
+</nav>
+
+
+
+  </div>
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 avi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
