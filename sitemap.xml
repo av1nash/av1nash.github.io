@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/blog/sql-table-partitions/</loc>
+<loc>https://github.com/pages/av1nash/blog/sql-table-partitions/</loc>
 <lastmod>2021-07-16T14:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/blog/partition-splitting/</loc>
+<loc>https://github.com/pages/av1nash/blog/partition-splitting/</loc>
 <lastmod>2021-07-20T14:42:19-04:00</lastmod>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/about/</loc>
+<loc>https://github.com/pages/av1nash/about/</loc>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/categories/</loc>
+<loc>https://github.com/pages/av1nash/categories/</loc>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/</loc>
+<loc>https://github.com/pages/av1nash/</loc>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/tags/</loc>
+<loc>https://github.com/pages/av1nash/tags/</loc>
 </url>
 <url>
-<loc>https://github.com/pages/av1nash/blog-comments/posts/</loc>
+<loc>https://github.com/pages/av1nash/posts/</loc>
 </url>
 </urlset>
