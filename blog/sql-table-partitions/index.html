@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Partitioning table in Azure Synapse - avi</title>
+<!-- begin _includes/seo.html --><title>Partitioning table in Azure Synapse - Avinash Tripathi</title>
 <meta name="description" content="Mostly sourced from this article">
 
 
@@ -21,9 +21,9 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="avi">
+<meta property="og:site_name" content="Avinash Tripathi">
 <meta property="og:title" content="Partitioning table in Azure Synapse">
-<meta property="og:url" content="/how-to/sql-table-partitions/">
+<meta property="og:url" content="/blog/sql-table-partitions/">
 
 
   <meta property="og:description" content="Mostly sourced from this article">
@@ -32,16 +32,28 @@
 
 
 
+  <meta name="twitter:site" content="@av1n45h">
+  <meta name="twitter:title" content="Partitioning table in Azure Synapse">
+  <meta name="twitter:description" content="Mostly sourced from this article">
+  <meta name="twitter:url" content="/blog/sql-table-partitions/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
 
 
-  <meta property="article:published_time" content="2021-07-16T18:00:00+00:00">
+
+  <meta property="article:published_time" content="2021-07-16T14:00:00-04:00">
 
 
 
 
 
 
-<link rel="canonical" href="/how-to/sql-table-partitions/">
+<link rel="canonical" href="/blog/sql-table-partitions/">
 
 
 
@@ -67,7 +79,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="avi Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Avinash Tripathi Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -112,8 +124,10 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
+          <a class="site-logo" href="/"><img src="/assets/images/400x400.jpg" alt="Avinash Tripathi"></a>
+        
         <a class="site-title" href="/">
-          avi
+          Avinash Tripathi
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -169,7 +183,7 @@
     </h3>
     
       <div class="author__bio p-note" itemprop="description">
-        <p>Data &amp; Analytics Engineering</p>
+        <p>Data &amp; Analytics Engineer</p>
 
       </div>
     
@@ -183,19 +197,19 @@
       
         
           
-            <li><a href="https://" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+            <li><a href="https://av1nash.github.io" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
           
         
           
-            <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/av1n45h" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
           
-            <li><a href="https://github.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/av1nash" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+            <li><a href="https://www.linkedin.com/in/tripathiavinash/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
           
         
       
@@ -266,22 +280,29 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Partitioning table in Azure Synapse">
     <meta itemprop="description" content="Mostly sourced from this article">
-    <meta itemprop="datePublished" content="2021-07-16T18:00:00+00:00">
+    <meta itemprop="datePublished" content="2021-07-16T14:00:00-04:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="/how-to/sql-table-partitions/" class="u-url" itemprop="url">Partitioning table in Azure Synapse
+            <a href="/blog/sql-table-partitions/" class="u-url" itemprop="url">Partitioning table in Azure Synapse
 </a>
           </h1>
           
 
   <p class="page__meta">
     
-
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-07-16T14:00:00-04:00">July 16, 2021</time>
+      </span>
     
+
+    <span class="page__meta-sep"></span>
 
     
       
@@ -290,7 +311,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 minute read
+          3 minute read
         
       </span>
     
@@ -358,30 +379,30 @@
 <p><img src="https://i.imgur.com/fAd0yHA.png" alt="" /></p>
 
 <h6 id="1-switch-from-non-partitioned-table-to-non-partitioned-table">1. Switch from non-partitioned table to non-partitioned table</h6>
-<pre><code class="language-sql=">ALTER TABLE src_tbl SWITCH TO tgt_tbl
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="k">TO</span> <span class="n">tgt_tbl</span>
+</code></pre></div></div>
 <p><img src="https://i.imgur.com/5YyXMzP.png" alt="" /></p>
 
 <p><strong>Note:</strong> tgt_tbl MUST be empty and should have exact same schema as src_tbl, or SQL server will throw an error.</p>
 
 <h6 id="2-switch-from-non-partitioned-table-to-partitioned-table">2. Switch from non-partitioned table to partitioned table</h6>
 <p><em>This is <ins>not supported</ins> in Azure Synapse, as check constraints are not supported to enforce the range of values in a table.</em></p>
-<pre><code class="language-sql=">ALTER TABLE src_tbl SWITCH TO tgt_tbl PARTITION 1
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="k">TO</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="mi">1</span>
+</code></pre></div></div>
 <p><img src="https://i.imgur.com/IwP5aC9.png" alt="" /></p>
 
 <p>Above SQL statement will fail if (non-partitioned) src_tbl doesn’t have check constraints to validate that it only contains data with values that are allowed in partition 1 on the (partitioned) tgt_tbl.</p>
 
 <p>If such a constraint was not added while creating the table, you can alter the table to add the constraint.</p>
 
-<pre><code class="language-sql=">ALTER TABLE src_tbl
-WITH CHECK ADD CONSTRAINT orderdate_check
-CHECK(order_date IS NOT NULL AND order_date &lt;'2008-01-01')
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span>
+<span class="k">WITH</span> <span class="k">CHECK</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">orderdate_check</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">order_date</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">AND</span> <span class="n">order_date</span> <span class="o">&lt;</span><span class="s1">'2008-01-01'</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h6 id="3-switch-from-partitioned-table-to-non-partitioned-table">3. Switch from partitioned table to non-partitioned table</h6>
-<pre><code class="language-sql=">ALTER TABLE src_tbl SWITCH PARTITION 1 TO tgt_tbl; 
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="n">PARTITION</span> <span class="mi">1</span> <span class="k">TO</span> <span class="n">tgt_tbl</span><span class="p">;</span> 
+</code></pre></div></div>
 
 <p><img src="https://i.imgur.com/FFJimPv.png" alt="" /></p>
 
@@ -389,8 +410,8 @@ CHECK(order_date IS NOT NULL AND order_date &lt;'2008-01-01')
 
 <p><img src="https://i.imgur.com/u0rOPLx.png" alt="" /></p>
 
-<pre><code class="language-sql=">ALTER TABLE src_tbl SWITCH PARTITION 2 TO tgt_tbl PARTITION 2
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="k">TO</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="mi">2</span>
+</code></pre></div></div>
 
 <p>In our example, tgt_tbl didn’t had any rows in partition # 2 but if it had rows in that partition, sql server will throw this error message:</p>
 
@@ -402,7 +423,7 @@ CHECK(order_date IS NOT NULL AND order_date &lt;'2008-01-01')
 
 <ol>
   <li>Solution # 1
-```sql=
+```sql
 –Clear partition # 2 by switching it to a dummy table (partitioned to non-partitioned table switching pattern)
 ALTER TABLE tgt_tbl PARTITION 2 SWITCH TO stg_tbl;</li>
 </ol>
@@ -413,7 +434,7 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION 2;</p>
 <p>–truncate dummy table
 TRUNCATE TABLE stg_tbl;</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2. Solution # 2
-```sql=
+```sql
 ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGET = ON)
 </code></pre></div></div>
 
@@ -459,7 +480,7 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#how-to" class="page__taxonomy-item p-category" rel="tag">how-to</a>
+      <a href="/categories/#blog" class="page__taxonomy-item p-category" rel="tag">blog</a>
     
     </span>
   </p>
@@ -467,18 +488,18 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-07-16T18:00:00+00:00">July 16, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-07-16T14:00:00-04:00">July 16, 2021</time></p>
 
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=Partitioning+table+in+Azure+Synapse%20%2Fhow-to%2Fsql-table-partitions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=av1n45h&text=Partitioning+table+in+Azure+Synapse%20%2Fblog%2Fsql-table-partitions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fhow-to%2Fsql-table-partitions%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fblog%2Fsql-table-partitions%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fhow-to%2Fsql-table-partitions%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fblog%2Fsql-table-partitions%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -527,15 +548,15 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
     
       
         
-          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          <li><a href="https://twitter.com/av1n45h" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
         
       
         
-          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          <li><a href="https://github.com/av1nash" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
         
       
         
-          <li><a href="https://instagram.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/tripathiavinash/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
         
       
     
@@ -546,7 +567,7 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2021 avi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 Avinash Tripathi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
@@ -562,6 +583,25 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
 <script src="/assets/js/lunr/lunr-en.js"></script>
 
 
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "/blog/sql-table-partitions/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/sql-table-partitions"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://av1na5h.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
 
 
 
