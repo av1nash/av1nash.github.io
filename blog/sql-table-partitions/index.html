@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Partitioning table in Azure Synapse - Avinash Tripathi</title>
-<meta name="description" content="My take on official Microsoft Documentation">
+<meta name="description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
 
 
   <meta name="author" content="Avinash Tripathi">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="/blog/sql-table-partitions/">
 
 
-  <meta property="og:description" content="My take on official Microsoft Documentation">
+  <meta property="og:description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
 
 
 
@@ -34,7 +34,7 @@
 
   <meta name="twitter:site" content="@av1n45h">
   <meta name="twitter:title" content="Partitioning table in Azure Synapse">
-  <meta name="twitter:description" content="My take on official Microsoft Documentation">
+  <meta name="twitter:description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
   <meta name="twitter:url" content="/blog/sql-table-partitions/">
 
   
@@ -277,7 +277,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Partitioning table in Azure Synapse">
-    <meta itemprop="description" content="My take on official Microsoft Documentation">
+    <meta itemprop="description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
     <meta itemprop="datePublished" content="2021-07-16T14:00:00-04:00">
     
 
@@ -420,20 +420,23 @@
 <p>There are two ways to deal with the scenario when target table’s partition is not empty:</p>
 
 <ol>
-  <li>Solution # 1
-```sql
-–Clear partition # 2 by switching it to a dummy table (partitioned to non-partitioned table switching pattern)
-ALTER TABLE tgt_tbl PARTITION 2 SWITCH TO stg_tbl;</li>
+  <li>Solution  1</li>
 </ol>
 
-<p>–Switch from partitioned table to partitioned table 
-ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION 2;</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">--Clear partition # 2 by switching it to a dummy table (partitioned to non-partitioned table switching pattern)</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="n">SWITCH</span> <span class="k">TO</span> <span class="n">stg_tbl</span><span class="p">;</span>
 
-<p>–truncate dummy table
-TRUNCATE TABLE stg_tbl;</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2. Solution # 2
-```sql
-ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGET = ON)
+<span class="c1">--Switch from partitioned table to partitioned table </span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="k">to</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="c1">--truncate dummy table</span>
+<span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">stg_tbl</span><span class="p">;</span>
+</code></pre></div></div>
+<ol>
+  <li>Solution  2</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="k">to</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="k">WITH</span> <span class="p">(</span><span class="n">TRUNCATE_TARGET</span> <span class="o">=</span> <span class="k">ON</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="query-operations">Query operations</h3>
@@ -502,6 +505,16 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
 
 
       
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/how-to/partition-splitting/" class="pagination--pager" title="Azure Synapse - Split Partition
+">Next</a>
+    
+  </nav>
+
     </div>
 
     
@@ -514,9 +527,55 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
       <div class="grid__wrapper">
         
           
-            
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to/partition-splitting/" rel="permalink">Azure Synapse - Split Partition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-07-20T14:42:19-04:00">July 20, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Visual explanation of partition splitting in Azure Synapse (SQL data warehouse)
+</p>
+  </article>
+</div>
+
+        
       </div>
     </div>
+  
   
 </div>
     </div>
@@ -591,7 +650,7 @@ ALTER TABLE src_tbl SWITCH PARTITION 2 to tgt_tbl PARTITION WITH (TRUNCATE_TARGE
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
-      s.src = 'https://av1na5h.disqus.com/embed.js';
+      s.src = 'https://av1nash.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
