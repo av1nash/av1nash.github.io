@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Partitioning table in Azure Synapse - Avinash Tripathi</title>
+<!-- begin _includes/seo.html --><title>Partitioning tables in Azure Synapse - Avinash Tripathi</title>
 <meta name="description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
 
 
@@ -22,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Avinash Tripathi">
-<meta property="og:title" content="Partitioning table in Azure Synapse">
+<meta property="og:title" content="Partitioning tables in Azure Synapse">
 <meta property="og:url" content="/blog/sql-table-partitions/">
 
 
@@ -33,7 +33,7 @@
 
 
   <meta name="twitter:site" content="@av1n45h">
-  <meta name="twitter:title" content="Partitioning table in Azure Synapse">
+  <meta name="twitter:title" content="Partitioning tables in Azure Synapse">
   <meta name="twitter:description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
   <meta name="twitter:url" content="/blog/sql-table-partitions/">
 
@@ -104,7 +104,7 @@
 
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -278,7 +278,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Partitioning table in Azure Synapse">
+    <meta itemprop="headline" content="Partitioning tables in Azure Synapse">
     <meta itemprop="description" content="Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)">
     <meta itemprop="datePublished" content="2021-07-16T14:00:00-04:00">
     
@@ -287,7 +287,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="/blog/sql-table-partitions/" class="u-url" itemprop="url">Partitioning table in Azure Synapse
+            <a href="/blog/sql-table-partitions/" class="u-url" itemprop="url">Partitioning tables in Azure Synapse
 </a>
           </h1>
           
@@ -331,9 +331,7 @@
             </nav>
           </aside>
         
-        <p>My take on official <a href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition">Microsoft Documentation</a></p>
-
-<h1 id="table-partition">Table Partition</h1>
+        <h1 id="table-partition">Table Partition</h1>
 <ol>
   <li>Enables you to divide data into smaller groups of data.</li>
   <li>Mostly created on a date column.</li>
@@ -368,12 +366,12 @@
 <ol>
   <li>Both tables must exist before the SWITCH operation.</li>
   <li>The receiving partition must exist and it must be empty.</li>
-  <li>The receiving nonpartitioned table must exist and it must be empty.</li>
+  <li>The receiving non-partitioned table must exist and it must be empty.</li>
   <li>Partitions must be on the same column.</li>
   <li>Source and target tables must share the same filegroup.</li>
 </ol>
 
-<p><a href="https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms191160(v=sql.105)#general-requirements-for-switching-partitions">More details</a></p>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms191160(v=sql.105)#general-requirements-for-switching-partitions">exhaustive list of requirements</a></p>
 
 <h5 id="partition-switching-patterns">Partition Switching patterns</h5>
 <p><img src="https://i.imgur.com/fAd0yHA.png" alt="" /></p>
@@ -421,9 +419,7 @@
 
 <p>There are two ways to deal with the scenario when target table’s partition is not empty:</p>
 
-<ol>
-  <li>Solution  1</li>
-</ol>
+<p>Solution  1</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">--Clear partition # 2 by switching it to a dummy table (partitioned to non-partitioned table switching pattern)</span>
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="n">SWITCH</span> <span class="k">TO</span> <span class="n">stg_tbl</span><span class="p">;</span>
@@ -434,9 +430,7 @@
 <span class="c1">--truncate dummy table</span>
 <span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">stg_tbl</span><span class="p">;</span>
 </code></pre></div></div>
-<ol>
-  <li>Solution  2</li>
-</ol>
+<p>Solution  2</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">src_tbl</span> <span class="n">SWITCH</span> <span class="n">PARTITION</span> <span class="mi">2</span> <span class="k">to</span> <span class="n">tgt_tbl</span> <span class="n">PARTITION</span> <span class="k">WITH</span> <span class="p">(</span><span class="n">TRUNCATE_TARGET</span> <span class="o">=</span> <span class="k">ON</span><span class="p">)</span>
 </code></pre></div></div>
@@ -446,6 +440,7 @@
 
 <p><strong>Note:</strong> Clustered columnstore indexes make predicate elimination performance benefits less beneficial, but in some cases there can be a benefit to queries.</p>
 
+<p>For more information refer <a href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition">Microsoft Documentation</a></p>
 
         
       </section>
@@ -498,7 +493,7 @@
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?via=av1n45h&text=Partitioning+table+in+Azure+Synapse%20%2Fblog%2Fsql-table-partitions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=av1n45h&text=Partitioning+tables+in+Azure+Synapse%20%2Fblog%2Fsql-table-partitions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fblog%2Fsql-table-partitions%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -512,7 +507,7 @@
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/blog/partition-splitting/" class="pagination--pager" title="Azure Synapse - Split Partition
+      <a href="/blog/partition-splitting/" class="pagination--pager" title="Partition splitting in Azure Synapse
 ">Next</a>
     
   </nav>
@@ -537,7 +532,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/blog/partition-splitting/" rel="permalink">Azure Synapse - Split Partition
+        <a href="/blog/partition-splitting/" rel="permalink">Partition splitting in Azure Synapse
 </a>
       
     </h2>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-13T00:29:14-04:00</updated><id>/feed.xml</id><title type="html">Avinash Tripathi</title><subtitle>Personal blog of Avinash</subtitle><author><name>Avinash Tripathi</name></author><entry><title type="html">Azure Synapse - Split Partition</title><link href="/blog/partition-splitting/" rel="alternate" type="text/html" title="Azure Synapse - Split Partition" /><published>2021-07-20T14:42:19-04:00</published><updated>2021-07-20T14:42:19-04:00</updated><id>/blog/partition-splitting</id><content type="html" xml:base="/blog/partition-splitting/">&lt;h1 id=&quot;the-setup&quot;&gt;The setup&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-23T22:03:37-04:00</updated><id>/feed.xml</id><title type="html">Avinash Tripathi</title><subtitle>Personal blog of Avinash</subtitle><author><name>Avinash Tripathi</name></author><entry><title type="html">Partition splitting in Azure Synapse</title><link href="/blog/partition-splitting/" rel="alternate" type="text/html" title="Partition splitting in Azure Synapse" /><published>2021-07-20T14:42:19-04:00</published><updated>2021-07-20T14:42:19-04:00</updated><id>/blog/partition-splitting</id><content type="html" xml:base="/blog/partition-splitting/">&lt;h1 id=&quot;the-setup&quot;&gt;The setup&lt;/h1&gt;
 &lt;p&gt;Elaborating on official &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition#how-to-split-a-partition-that-contains-data&quot;&gt;Microsoft documentation&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s start with a partitioned table - src_tbl&lt;/p&gt;
@@ -83,9 +83,7 @@
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/IBi5Uxd.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;5-cleanup&quot;&gt;5. Cleanup&lt;/h2&gt;
-&lt;p&gt;You can now drop the dummy tables you created to perform partition splitting&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Partitioning" /><summary type="html">Visual explanation of partition splitting in Azure Synapse (SQL data warehouse)</summary></entry><entry><title type="html">Partitioning table in Azure Synapse</title><link href="/blog/sql-table-partitions/" rel="alternate" type="text/html" title="Partitioning table in Azure Synapse" /><published>2021-07-16T14:00:00-04:00</published><updated>2021-07-16T14:00:00-04:00</updated><id>/blog/sql-table-partitions</id><content type="html" xml:base="/blog/sql-table-partitions/">&lt;p&gt;My take on official &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition&quot;&gt;Microsoft Documentation&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;table-partition&quot;&gt;Table Partition&lt;/h1&gt;
+&lt;p&gt;You can now drop the dummy tables you created to perform partition splitting&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Partitioning" /><summary type="html">Visual explanation of partition splitting in Azure Synapse (SQL data warehouse)</summary></entry><entry><title type="html">Partitioning tables in Azure Synapse</title><link href="/blog/sql-table-partitions/" rel="alternate" type="text/html" title="Partitioning tables in Azure Synapse" /><published>2021-07-16T14:00:00-04:00</published><updated>2021-07-16T14:00:00-04:00</updated><id>/blog/sql-table-partitions</id><content type="html" xml:base="/blog/sql-table-partitions/">&lt;h1 id=&quot;table-partition&quot;&gt;Table Partition&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;Enables you to divide data into smaller groups of data.&lt;/li&gt;
   &lt;li&gt;Mostly created on a date column.&lt;/li&gt;
@@ -120,12 +118,12 @@
 &lt;ol&gt;
   &lt;li&gt;Both tables must exist before the SWITCH operation.&lt;/li&gt;
   &lt;li&gt;The receiving partition must exist and it must be empty.&lt;/li&gt;
-  &lt;li&gt;The receiving nonpartitioned table must exist and it must be empty.&lt;/li&gt;
+  &lt;li&gt;The receiving non-partitioned table must exist and it must be empty.&lt;/li&gt;
   &lt;li&gt;Partitions must be on the same column.&lt;/li&gt;
   &lt;li&gt;Source and target tables must share the same filegroup.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms191160(v=sql.105)#general-requirements-for-switching-partitions&quot;&gt;More details&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms191160(v=sql.105)#general-requirements-for-switching-partitions&quot;&gt;exhaustive list of requirements&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;partition-switching-patterns&quot;&gt;Partition Switching patterns&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/fAd0yHA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -173,9 +171,7 @@
 
 &lt;p&gt;There are two ways to deal with the scenario when target table’s partition is not empty:&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Solution  1&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Solution  1&lt;/p&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;--Clear partition # 2 by switching it to a dummy table (partitioned to non-partitioned table switching pattern)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tgt_tbl&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PARTITION&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SWITCH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stg_tbl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -186,9 +182,7 @@
 &lt;span class=&quot;c1&quot;&gt;--truncate dummy table&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;TRUNCATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stg_tbl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ol&gt;
-  &lt;li&gt;Solution  2&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Solution  2&lt;/p&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src_tbl&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SWITCH&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PARTITION&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tgt_tbl&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PARTITION&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WITH&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TRUNCATE_TARGET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -196,4 +190,6 @@
 &lt;h3 id=&quot;query-operations&quot;&gt;Query operations&lt;/h3&gt;
 &lt;p&gt;Partitioning can improve query performance by limiting the scan to only the qualifying partitions. This method of filtering can avoid a full table scan and only scan a smaller subset of data.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Clustered columnstore indexes make predicate elimination performance benefits less beneficial, but in some cases there can be a benefit to queries.&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Database" /><category term="Partitioning" /><summary type="html">Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Clustered columnstore indexes make predicate elimination performance benefits less beneficial, but in some cases there can be a benefit to queries.&lt;/p&gt;
+
+&lt;p&gt;For more information refer &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition&quot;&gt;Microsoft Documentation&lt;/a&gt;&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Database" /><category term="Partitioning" /><summary type="html">Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)</summary></entry></feed>
