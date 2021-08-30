@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-29T21:29:00-04:00</updated><id>/feed.xml</id><title type="html">Avinash Tripathi</title><subtitle>Personal blog of Avinash</subtitle><author><name>Avinash Tripathi</name></author><entry><title type="html">Partition splitting in Azure Synapse</title><link href="/blog/partition-splitting/" rel="alternate" type="text/html" title="Partition splitting in Azure Synapse" /><published>2021-07-20T14:42:19-04:00</published><updated>2021-07-20T14:42:19-04:00</updated><id>/blog/partition-splitting</id><content type="html" xml:base="/blog/partition-splitting/">&lt;h1 id=&quot;the-setup&quot;&gt;The setup&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-30T11:54:06-04:00</updated><id>/feed.xml</id><title type="html">Avinash Tripathi</title><subtitle>Personal blog of Avinash</subtitle><author><name>Avinash Tripathi</name></author><entry><title type="html">Partition splitting in Azure Synapse</title><link href="/blog/partition-splitting/" rel="alternate" type="text/html" title="Partition splitting in Azure Synapse" /><published>2021-07-20T14:42:19-04:00</published><updated>2021-07-20T14:42:19-04:00</updated><id>/blog/partition-splitting</id><content type="html" xml:base="/blog/partition-splitting/">&lt;h1 id=&quot;the-setup&quot;&gt;The setup&lt;/h1&gt;
 &lt;p&gt;Elaborating on official &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition#how-to-split-a-partition-that-contains-data&quot;&gt;Microsoft documentation&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s start with a partitioned table - src_tbl&lt;/p&gt;
@@ -192,4 +192,45 @@
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Clustered columnstore indexes make predicate elimination performance benefits less beneficial, but in some cases there can be a benefit to queries.&lt;/p&gt;
 
-&lt;p&gt;For more information refer &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition&quot;&gt;Microsoft Documentation&lt;/a&gt;&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Database" /><category term="Partitioning" /><summary type="html">Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)</summary></entry></feed>
+&lt;p&gt;For more information refer &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-partition&quot;&gt;Microsoft Documentation&lt;/a&gt;&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="Azure Synapse" /><category term="Database" /><category term="Partitioning" /><summary type="html">Practical guide on table partitioning in Azure Synapse (SQL Data warehouse)</summary></entry><entry><title type="html">Remove hidden characters from a database table</title><link href="/blog/t-sql-remove-hidden-characters/" rel="alternate" type="text/html" title="Remove hidden characters from a database table" /><published>2019-03-26T01:00:01-04:00</published><updated>2019-03-26T01:00:01-04:00</updated><id>/blog/t-sql-remove-hidden-characters</id><content type="html" xml:base="/blog/t-sql-remove-hidden-characters/">&lt;p&gt;When working with large text fields (usually coming from fields which allow users to enter free text in front end or email body etc.) it is possible to encounter data which has invisible characters.
+These characters could be invisible to your eyes in management studio while querying or even to certain functions like - LTRIM, RTRIM or in a predicate condition like -&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ColumnName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can try a brute force method to resolve this by replacing commonly occuring invisible characters like -&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Character&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;ASCII Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Line Feed&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Carriage Return&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;13&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Horizontal Tab&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Non-breaking space&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;160&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You can read more about it here: &lt;a href=&quot;https://en.wikipedia.org/wiki/ASCII&quot;&gt;ASCII character list&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To replace you can use this pattern:&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;REPLACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columnname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;VARCHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can keep on adding more Replace statements as required in your case.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Please be aware that if [columnname] is large in size, your query performance will degrade.&lt;/p&gt;</content><author><name>Avinash Tripathi</name></author><category term="blog" /><category term="T-SQL" /><category term="Database" /><summary type="html">How to find and remove hidden characters from a database table</summary></entry></feed>
