@@ -5,6 +5,12 @@ var store = [{
         "url": "/blog/t-sql-remove-hidden-characters/",
         "teaser": null
       },{
+        "title": "Regex to remove html tags",
+        "excerpt":"I was working on a problem which required some string data cleanup, the string I was working with had categorical values of survey response - satisfied, dissatisfied, very satisfied etc. but with html tags embedded in the string. &lt;img src=\"https://organization123.surveycompany.com/CP/Graphic.php?IM=ABC\" style=\"width: 41px; height: 39px;\"&gt;&lt;/img&gt;&lt;br&gt;Very Satisfied I was only interested in...","categories": ["blog"],
+        "tags": ["regex","python","pandas"],
+        "url": "/blog/regex-removing-html-tags/",
+        "teaser": null
+      },{
         "title": "Partitioning tables in Azure Synapse",
         "excerpt":"Table Partition Enables you to divide data into smaller groups of data. Mostly created on a date column. Supported on all table types: clustered columnstore clustered index heap Supported on all distribution types: hash round robin Can be done on one column only. Benefits Load operations When leveraging partitions to...","categories": ["blog"],
         "tags": ["Azure Synapse","Database","Partitioning"],
