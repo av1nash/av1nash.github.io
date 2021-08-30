@@ -323,14 +323,6 @@
 
       <section class="page__content e-content" itemprop="text">
         
-          <aside class="sidebar__right ">
-            <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              
-
-            </nav>
-          </aside>
-        
         <p>When working with large text fields (usually coming from fields which allow users to enter free text in front end or email body etc.) it is possible to encounter data which has invisible characters.
 These characters could be invisible to your eyes in management studio while querying or even to certain functions like - LTRIM, RTRIM or in a predicate condition like -</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">WHERE</span><span class="p">([</span><span class="n">ColumnName</span><span class="p">])</span> <span class="o">&lt;&gt;</span> <span class="s1">''</span>
