@@ -77,6 +77,7 @@ plugins:
   - jekyll-include-cache
   - jekyll-remote-theme
 
+
 author:
   name   : "Avinash Tripathi"
   avatar : "/assets/images/bio-photo.jpg"

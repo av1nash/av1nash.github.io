@@ -4,6 +4,7 @@ date: 2022-02-22 21:46:00
 toc: true
 comments: true
 classes: wide
+mermaid: true
 excerpt: "Azure data lake storage gen2 best practices for choosing file formats"
 tags: ["Azure Data Lake Storage","Best Practices"]
 categories: ["blog"]
