@@ -92,7 +92,7 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/usr/local/include/ruby-2.7.0/x86_64-linux-musl -I/usr/local/include/ruby-2.7.0/ruby/backward -I/usr/local/include/ruby-2.7.0 -I.    -g -O2 -fPIC conftest.c  -L. -L/usr/local/lib -Wl,-rpath,/usr/local/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/usr/local/lib -L/usr/local/lib -lruby  -lm   -lc"
-/usr/lib/gcc/x86_64-alpine-linux-musl/10.3.1/../../../../x86_64-alpine-linux-musl/bin/ld: /tmp/ccjePJLO.o: in function `t':
+/usr/lib/gcc/x86_64-alpine-linux-musl/10.3.1/../../../../x86_64-alpine-linux-musl/bin/ld: /tmp/ccMImOAE.o: in function `t':
 /github/workspace/code/vendor/bundle/ruby/2.7.0/gems/json-2.6.1/ext/json/ext/parser/conftest.c:17: undefined reference to `rb_enc_interned_str'
 collect2: error: ld returned 1 exit status
 checked program was:

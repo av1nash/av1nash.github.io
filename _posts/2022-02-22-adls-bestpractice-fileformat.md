@@ -14,11 +14,11 @@ Azure data lake storage (adls) gen2 supports various file formats. Follow this r
 
 ```mermaid
 graph TD;
-    A[File formats] -->|human readable| B(JSON, CSV, XML);
-    A -->|machine readable binary file formats| C(Avro, Parquet, ORC);
-    C --> D{Choose File format};
-    D -->|Write heavy I/O pattern| E[Avro];
-    D -->|Read heavy I/O pattern| F[Parquet and ORC];
+  A[File formats] -->|human readable| B(JSON, CSV, XML);
+  A -->|machine readable binary file formats| C(Avro, Parquet, ORC);
+  C --> D{Choose File format};
+  D -->|Write heavy I/O pattern| E[Avro];
+  D -->|Read heavy I/O pattern| F[Parquet and ORC];
 ```
 
 **Note**
