@@ -12,7 +12,7 @@ categories: ["blog"]
 
 Azure data lake storage (adls) gen2 supports various file formats. Follow this recommendation from Microsoft while choosing the correct file format for your data operations.
 
-```mermaid
+```mermaid!
 graph TD;
   A[File formats] -->|human readable| B(JSON, CSV, XML);
   A -->|machine readable binary file formats| C(Avro, Parquet, ORC);

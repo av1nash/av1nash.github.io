@@ -76,6 +76,7 @@ plugins:
   - jemoji
   - jekyll-include-cache
   - jekyll-remote-theme
+  - jekyll-spaceship
 
 
 author:
