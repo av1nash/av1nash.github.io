@@ -3,7 +3,6 @@ title: ADLS Gen2 Best Practices - File Formats
 date: 2022-02-22 21:46:00
 toc: true
 comments: true
-classes: wide
 excerpt: "Azure data lake storage gen2 best practices for choosing file formats"
 tags: ["Azure Data Lake Storage","Best Practices"]
 categories: ["blog"]
@@ -11,14 +10,7 @@ categories: ["blog"]
 
 Azure data lake storage (adls) gen2 supports various file formats. Follow this recommendation from Microsoft while choosing the correct file format for your data operations.
 
-```mermaid!
-graph TD;
-    A[File formats] -->|human readable| B(JSON, CSV, XML);
-    A -->|machine readable binary file formats| C(Avro, Parquet, ORC);
-    C --> D{Choose File format};
-    D -->|Write heavy I/O pattern| E[Avro];
-    D -->|Read heavy I/O pattern| F[Parquet and ORC];
-```
+[![](https://mermaid.ink/img/pako:eNptkMFqg0AQhl9l2FMKht4NFFJNoKWtJZa2oDlM3LEuuLt23Q2I-u5dg5YUOqc5fPPNz9-zQnNiIfsy2FTwFm9yBX622V7UBKU2Em17hPX6bqicRAWGkOOppgHuV49p8hJAlL4H8Pn8dLPcXmiJRSUU_fJwEgpNB-WVd4BotT0bHcArmm9HNoDkEC2eaPJA3EeV1i3BVaBxJuLLpw8jLEFFeO7g4TaBBq0lowbYZZP8-Ac--Dj_sftsjgCo-JTiuGEBk-TfCe776SdJzmxFknIW-pVTia62OcvV6FHXcLS048Jqw8IS65YChs7qtFMFC61xtECxQF-3nKnxB_NwfnQ)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNptkMFqg0AQhl9l2FMKht4NFFJNoKWtJZa2oDlM3LEuuLt23Q2I-u5dg5YUOqc5fPPNz9-zQnNiIfsy2FTwFm9yBX622V7UBKU2Em17hPX6bqicRAWGkOOppgHuV49p8hJAlL4H8Pn8dLPcXmiJRSUU_fJwEgpNB-WVd4BotT0bHcArmm9HNoDkEC2eaPJA3EeV1i3BVaBxJuLLpw8jLEFFeO7g4TaBBq0lowbYZZP8-Ac--Dj_sftsjgCo-JTiuGEBk-TfCe776SdJzmxFknIW-pVTia62OcvV6FHXcLS048Jqw8IS65YChs7qtFMFC61xtECxQF-3nKnxB_NwfnQ)
 
 **Note**
 
