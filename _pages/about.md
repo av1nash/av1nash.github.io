@@ -15,3 +15,4 @@ Feel free to reach out to me on [twitter](https://twitter.com/av1n45h) (my dms a
 
 ## Certifications
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="a1ff5726-e920-4033-9873-4f5eeadd840f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="747e4aa8-12a7-4116-b5d7-b1c55e9cf0d4" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
