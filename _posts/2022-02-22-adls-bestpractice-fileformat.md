@@ -1,7 +1,7 @@
 ---
 title: ADLS Gen2 Best Practices - File Formats
 date: 2022-02-22 21:46:00
-toc: true
+toc: false
 comments: true
 excerpt: "Azure data lake storage gen2 best practices for choosing file formats"
 tags: ["Azure Data Lake Storage","Best Practices"]
