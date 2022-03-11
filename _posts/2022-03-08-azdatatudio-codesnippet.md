@@ -2,6 +2,7 @@
 title: Azure Data Studio - Code snippets
 date: 2022-03-08 22:48:00
 toc: false
+classes: wide
 comments: true
 excerpt: "Azure data studio code snippets to increase your productivity"
 tags: ["Azure Data Studio","SQL"]
