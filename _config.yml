@@ -81,7 +81,7 @@ plugins:
 author:
   name   : "Avinash Tripathi"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Data & Analytics Leader"
+  bio    : "Data & Analytics"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
